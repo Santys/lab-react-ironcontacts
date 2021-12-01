@@ -35,6 +35,13 @@ function App() {
     setContacts(sortedArray);
   };
 
+  // Delete selected contact by id
+  const deleteContact = (id) => {
+    setContacts(
+      contacts.filter(contact => contact.id !== id)
+    );
+  };
+
   return (
     <div className="App">
       <h1>IronContacts</h1>
@@ -51,6 +58,7 @@ function App() {
           <th>Popularity</th>
           <th>Won Oscar</th>
           <th>Won Emmy</th>
+          <th>Actions</th>
         </tr>
         {contacts.map(contact => {
           return (
@@ -60,6 +68,7 @@ function App() {
                 <td>{contact.popularity}</td>
                 {contact.wonOscar ? <td>🏆</td> : <td></td>}
                 {contact.wonEmmy ? <td>🏆</td> : <td></td>}
+                <td><button onClick={() => deleteContact(contact.id)}>Delete</button></td>
               </tr>
             )
         })}
