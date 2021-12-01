@@ -5,6 +5,9 @@
   align-items: center;
 }
 
+.App button{
+  margin: 5px;
+}
 
 
 .table td {

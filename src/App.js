@@ -14,12 +14,35 @@ function App() {
     const randomContact = randomContacts.splice(randomIndex, 1)[0]
     setContacts([...contacts, randomContact])
   }
+  
+  // Sort contacts by highest popularity
+  const sortByPopularity = () => {
+    const sortedArray = contacts
+      .map((contact) => contact)
+      .sort((a, b) => b.popularity - a.popularity);
+    setContacts(sortedArray);
+  };
 
+  // Sort contacts alphabetically
+  const sortByName = () => {
+    const sortedArray = contacts
+      .map((contact) => contact)
+      .sort((a, b) => {
+        if (a.name > b.name) return 1;
+        if (a.name < b.name) return -1;
+        return 0;
+      });
+    setContacts(sortedArray);
+  };
 
   return (
     <div className="App">
       <h1>IronContacts</h1>
-      <button onClick={() => addRandomContact()}>Add Random Contact </button>
+      <div>
+        <button onClick={() => addRandomContact()}>Add Random Contact</button>
+        <button onClick={() => sortByPopularity()}>Sort by popularity</button>
+        <button onClick={() => sortByName()}>Sort by name</button>
+      </div>
       <table className="table">
         <tbody>
         <tr>
